@@ -1,2 +1,2 @@
-# k8s-vagrant
-A single node k8s cluster on vagrant
+# lab-kubernetes
+A vagrant lab for kubernetes

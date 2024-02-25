@@ -1,0 +1,4 @@
+---
+# defaults file for kubernetes
+
+pod_cidr: 10.244.0.0/16 # default for flannel & canal
