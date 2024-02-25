@@ -1,6 +1,6 @@
 all:
   hosts:
     k8s_node:
-      ansible_host: 172.16.244.132
+      ansible_host: 172.16.244.134
   vars:
     pod_cidr: 192.168.0.0/16 # calico default cidr range

@@ -81,15 +81,6 @@
     systemctl restart containerd
   args:
     executable: /bin/bash
-
-# Install CNI plugins
-- name: Install CNI plugins
-  ansible.builtin.shell: | 
-    wget https://github.com/containernetworking/plugins/releases/download/v1.3.0/cni-plugins-linux-amd64-v1.3.0.tgz
-    mkdir -p /opt/cni/bin
-    tar Cxzvf /opt/cni/bin cni-plugins-linux-amd64-v1.3.0.tgz
-  args:
-    executable: /bin/bash
  
 #
 # install kubernetes

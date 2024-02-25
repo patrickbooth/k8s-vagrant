@@ -1,9 +1,9 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-API_VER = "2"
+$api = "2"
 
-Vagrant.configure(API_VER) do |config|
+Vagrant.configure($api) do |config|
   # gyptazy provides a good range of arm64 vagrant boxes for use with vmware_fusion
   config.vm.box = "gyptazy/rocky9.3-arm64"
   config.vm.hostname = "k8s-node-001"
@@ -21,6 +21,8 @@ Vagrant.configure(API_VER) do |config|
     s.inline = <<-SHELL
       echo #{ssh_pub_key} >> /home/vagrant/.ssh/authorized_keys
       echo #{ssh_pub_key} >> /root/.ssh/authorized_keys
+      IPADDR=`ip -4 address show dev ens160 | grep inet | awk '{print $2}' | cut -f1 -d/`
+      echo "This VM has IP address $IPADDR, MacOS command: sed -i '' -e 's/ansible_host:.*/ansible_host: $IPADDR/' ./ansible/inventory.yml"
     SHELL
   end
 end
