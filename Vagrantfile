@@ -5,7 +5,7 @@ $api = "2"
 
 Vagrant.configure($api) do |config|
   # gyptazy provides a good range of arm64 vagrant boxes for use with vmware_fusion
-  config.vm.box = "gyptazy/rocky9.3-arm64"
+  config.vm.box = "bento/rockylinux-9.3-arm64"
   config.vm.hostname = "k8s-node-001"
 
   config.vm.provider "vmware_desktop" do |v|
