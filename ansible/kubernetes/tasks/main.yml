@@ -151,6 +151,7 @@
   become: true
   become_user: vagrant
   ansible.builtin.shell: | 
+    curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
     helm repo add fleet https://rancher.github.io/fleet-helm-charts/
     helm -n fleet-system install --create-namespace --wait fleet-crd fleet/fleet-crd
     helm -n fleet-system install fleet fleet/fleet
@@ -164,5 +165,3 @@
     src: /etc/kubernetes/admin.conf
     dest: ~/.kube/config
     flat: yes # remove hostname file tree
-
-
