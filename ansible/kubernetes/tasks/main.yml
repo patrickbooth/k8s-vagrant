@@ -55,10 +55,11 @@
 
 #
 # install packages
-- name: Install dnf-utils
+- name: Install packages
   ansible.builtin.dnf:
     name:
       - dnf-utils
+      - git
     state: latest
 - name: Add docker repo for containerd
   ansible.builtin.command: dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
@@ -138,6 +139,7 @@
   become: true
   become_user: vagrant
   ansible.builtin.command: kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml  
+
 # - name: Install calico CNI
 #   become: true
 #   become_user: vagrant
@@ -165,3 +167,14 @@
     src: /etc/kubernetes/admin.conf
     dest: ~/.kube/config
     flat: yes # remove hostname file tree
+
+#
+# add utilities to machine
+- name: Install Helm
+  become: true
+  become_user: vagrant
+  ansible.builtin.shell: |
+    curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+  args:
+    executable: /bin/bash
+ 
